@@ -5,11 +5,13 @@ import { CertificationsComponent } from './component/certifications/certificatio
 import { HomeComponent } from './component/home/home.component';
 
 
+
+
 const routes: Routes = [
   {path:  "", pathMatch:  "full",redirectTo:  "home"},
   {path: "home", component: HomeComponent},
   {path: "contact-me", component: ContactmeComponent},
-  {path: "certification-list", component: CertificationsComponent}
+
 
 ];
 
