@@ -9,8 +9,8 @@ phases:
     install:
         commands:
         # Download and Install NodeJS 8.0
-        - curl -sL https://rpm.nodesource.com/setup_10.x
-        - yum install -y nodejs
+        - curl -sL https://rpm.nodesource.com/setup_10.x |  sudo -E bash -
+        - install -y nodejs
         - echo Installing source NPM dependencies...
         # Install http drivers for node
         - sudo yum update -y
