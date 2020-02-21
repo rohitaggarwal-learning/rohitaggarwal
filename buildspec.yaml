@@ -9,19 +9,12 @@ phases:
     install:
         commands:
         # Download and Install NodeJS 8.0
-        - curl -sL https://rpm.nodesource.com/setup_10.x |  sudo -E bash -
-        - install -y nodejs
-        - echo Installing source NPM dependencies...
-        # Install http drivers for node
-        - sudo yum update -y
-       
-        # Install Angular CLI, If you are not using Angular 6, install angular/cli@1.7.0 or lower, confirm by running ng -v inside your project folder
-        - sudo npm install -g @angular/cli > /dev/null
-        # Install node dependancies.
-        # yum install
-        -  sudo node -v
-        - sudo npm -p
-        - sudo ng version
+       - curl -sL https://rpm.nodesource.com/setup_10.x | sudo bash -
+       - sudo yum install nodejs
+       - node --version
+       - npm --version
+       - npm install -g @angular/cli
+     
 
 build:
         commands:
