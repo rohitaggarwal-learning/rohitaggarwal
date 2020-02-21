@@ -14,22 +14,20 @@ phases:
         - echo Installing source NPM dependencies...
         # Install http drivers for node
         - sudo yum update -y
-        # sudo yum install -y apt-transport-https
-        # Install Yarn Package Manager (Replace the commands below if you using NPM).
-        # curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-        # echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-        #sudo yum update -y
-        $ sudo yum install -y yarn
+       
         # Install Angular CLI, If you are not using Angular 6, install angular/cli@1.7.0 or lower, confirm by running ng -v inside your project folder
         - sudo npm install -g @angular/cli > /dev/null
         # Install node dependancies.
         # yum install
+        -  sudo node -v
+        - sudo npm -p
+        - sudo ng version
 
 build:
         commands:
         # Builds Angular application. You can also build using custom environment here like mock or staging
         - echo Build started on `date`
-        - ng build --${BUILD_ENV}
+        - sudo ng build --${BUILD_ENV}
 
 post_build:
         commands:
