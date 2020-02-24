@@ -1,7 +1,7 @@
 version: 0.2
 env:
   variables:
-    S3_BUCKET: "roaggarW"
+    S3_BUCKET: "roaggarw"
 phases:
   install:
     runtime-versions:
