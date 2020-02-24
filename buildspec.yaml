@@ -1,38 +1,26 @@
 version: 0.2
 env:
-    variables:
-        S3_BUCKET: "roaggarw1"
-APP_NAME: "rohitaggarwal"
-BUILD_ENV : "prod"
-
+  variables:
+    S3_BUCKET: "roaggarW"
 phases:
-    install:
-        commands:
-        # Download and Install NodeJS 8.0
-        - curl -sL https://rpm.nodesource.com/setup_10.x | sudo bash -
-        - sudo yum install nodejs
-        - node --version
-        - npm --version
-        - npm install -g @angular/cli
-     
-
-build:
-        commands:
-        # Builds Angular application. You can also build using custom environment here like mock or staging
-        - echo Build started on `date`
-        - sudo ng build --${BUILD_ENV}
-
-post_build:
-        commands:
-        # Clear S3 bucket.
-        - aws s3 rm s3://${S3_BUCKET} --recursive
-        - echo S3 bucket is cleared.
-        # Copy dist folder to S3 bucket, As of Angular 6, builds are stored inside an app folder in distribution and not at the root of the dist folder
-        - aws s3 cp dist s3://${S3_BUCKET}/${APP_NAME} --recursive
-        - echo Build completed on `date`
-
+  install:
+    runtime-versions:
+      nodejs: 10
+  pre_build:
+    commands:
+      - echo Installing source NPM dependencies...
+      - npm install
+      - npm install -g @angular/cli
+  build:
+    commands:
+      - echo Build started on `date`
+      - ng build --prod --aot
+  post_build:
+     commands:
+      - aws s3 cp dist s3://${S3_BUCKET} --recursive
+      - echo Build completed on `date`
 artifacts:
-    files:
-        - '/'
-    discard-paths: yes
-    base-directory: 'dist*'
+  files:
+      - '**/*'
+  base-directory: 'dist*'
+  discard-paths: yes
